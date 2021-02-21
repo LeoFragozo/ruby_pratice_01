@@ -30,14 +30,20 @@ def print_info(countries)
     puts "País: #{country[:name]} Moeda: #{country[:currency]} Gentĺlico: #{country[:nationality]}"
   end
   puts
-  puts '*** Cadastre pelo menos um país ***' if countries.empty?
+  puts '=========== Cadastre pelo menos um país ===========' if countries.empty?
   puts
+end
+
+def search_info(countries)
+  puts 'Digite o nome do país que você quer pesquisar'
+  search = gets.chomp
+  searched_country = countries.find { |country| country[:name] == search }
+  puts "Moeda: #{searched_country[:currency]} Gentílico: #{searched_country[:nationality]}"
 end
 
 welcome
 
 countries = []
-
 option = menu
 
 loop do
@@ -46,10 +52,7 @@ loop do
   elsif option == 2
     print_info(countries)
   elsif option == 3
-    puts 'Digite o nome do país que você quer pesquisar'
-    search = gets.chomp
-    searched_country = countries.find { |country| country[:name] == search }
-    puts "Moeda: #{searched_country[:currency]} Gentílico: #{searched_country[:nationality]}"
+    search_info(countries)
   elsif option == 4
     break
   else
